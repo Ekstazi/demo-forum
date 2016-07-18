@@ -52,7 +52,7 @@ class ThreadController extends Controller
         /** @var Thread $model */
         $model = $this->getRepository('thread')->findByPk($request->get('thread'));
         if(!$model) {
-            throw  new NotFoundException();
+            throw new NotFoundException();
         }
         
         return $this->render('view', [

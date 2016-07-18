@@ -278,7 +278,9 @@ class App
 
     protected function render404()
     {
-        $this->runController($this->errorRoute);
+        header("HTTP/1.0 404 Not Found");
+        $response = $this->runController($this->errorRoute);
+        $this->getResponse()->process($response);
     }
 
     protected function parseRequest()
