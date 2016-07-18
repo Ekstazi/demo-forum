@@ -4,9 +4,9 @@ use app\components\helpers\Html;
 /** @var $this \app\components\View */
 /** @var $thread \app\models\Thread */
 /** @var $messages \app\models\Message[] */
-$this->setTitle('Сообщения темы:' . $thread->title);
+$this->setTitle('Сообщения темы:' . htmlspecialchars($thread->title));
 ?>
-<h2>Сообщения темы: <?= $thread->title ?></h2>
+<h2>Сообщения темы: <?= htmlspecialchars($thread->title) ?></h2>
 <div>
     <?php if ($thread->canUpdate()) { ?>
         <?= Html::a('Изменить тему', ['thread/update', 'thread' => $thread->id]); ?>
@@ -21,7 +21,7 @@ $this->setTitle('Сообщения темы:' . $thread->title);
 <?php foreach ($messages as $message) { ?>
     <div class="blog-post">
         <p class="blog-post-meta"><?= date('d-m-Y h:i:s', $message->created_at) ?> by <a
-                href="#"><?= $message->getOwner()->email; ?></a>
+                href="#"><?= htmlspecialchars($message->getOwner()->email); ?></a>
         </p>
         <div>
             <?= htmlspecialchars($message->message) ?>
